@@ -1,9 +1,13 @@
 from HTMLParser import HTMLParser
 from htmlentitydefs import name2codepoint
 import re
+import time
 
 class sipMsg:
-    def __init__(self, direction, msgFrom, to, time, method, statuscode, sipCallId, isRequest, msg):
+    def __init__(self, direction = '', \
+            msgFrom = '', to = '', time = '', method = '', \
+            statuscode = '', sipCallId = '', isRequest = '', msg = ''):
+
         self.direction = direction
         self.msgFrom = msgFrom
         self.to = to
@@ -12,43 +16,43 @@ class sipMsg:
         self.statuscode = statuscode
         self.sipCallId = sipCallId
         self.isRequest = isRequest
-        self.meg = msg
+        self.msg = msg
     def parseMsg(self):
         print 'parseMsg'
 
 class MyHTMLParser(HTMLParser):
+    def setMsgFlow(self, msgArr):
+        self.msgArr = msgArr
+        self.tmpMsg = sipMsg()
     def handle_starttag(self, tag, attrs):
-        print "Start tag:", tag
-        return
-        tmpMsg = sipMsg()
+        # print "Start tag:", attrs
         for attr in attrs:
             if attr[0] == 'direction':
-                tmpMsg.direction = attr[1]
+                self.tmpMsg.direction = attr[1]
             if attr[0] == 'from':
-                tmpMsg.msgFrom = attr[1]
+                self.tmpMsg.msgFrom = attr[1]
             if attr[0] == 'to':
-                tmpMsg.to = attr[1]
+                self.tmpMsg.to = attr[1]
             if attr[0] == 'time':
-                tmpMsg.time = attr[1]
+                self.tmpMsg.time = attr[1]
             if attr[0] == 'method':
-                tmpMsg.method = attr[1]
+                self.tmpMsg.method = attr[1]
             if attr[0] == 'statuscode':
-                tmpMsg.statuscode = attr[1]
+                self.tmpMsg.statuscode = attr[1]
             if attr[0] == 'sipCallId':
-                tmpMsg.sipCallId = attr[1]
+                self.tmpMsg.sipCallId = attr[1]
             if attr[0] == 'isRequest':
-                tmpMsg.isRequest = attr[1]
-        return tmpMsg
-
+                self.tmpMsg.isRequest = attr[1]
+        
     def handle_endtag(self, tag):
-        print "End tag  :", tag
-
-    def handle_data(self, data):
-        print "     DATA:", data
-
+        self.msgArr.append(self.tmpMsg) 
+        self.tmpMsg = sipMsg()
+    # def handle_data(self, data):
+    #     #self.tmpMsg.msg = data
+    #     print "data     :", data
     def handle_comment(self, data):
         if (data.find('CDATA') != -1):
-            print "MSG     :", data
+            self.tmpMsg.msg = data
     def handle_entityref(self, name):
         c = unichr(name2codepoint[name])
         print "Named ent:", c
@@ -63,13 +67,31 @@ class MyHTMLParser(HTMLParser):
     # def get_starttag_text(self, data):
     #     print "message  :", data
 def main():
+    
+    msgFlow = list()
     parser = MyHTMLParser()
+    parser.setMsgFlow(msgFlow)
+
     f = open('sipserver118.1.trace', 'r')
     fileData = f.read()
     repData = fileData.replace('<![', '<!--[')
     repData = repData.replace(']>', ']-->')
+    # print repData
     parser.feed(repData)
+    flow = parser.msgArr
+    for m in flow:
+        print m.direction
+        print m.msgFrom
+        print m.to
+        # print time.strftime("%D %H:%M", time.localtime(int(m.time + '')))
+        print m.time
+        print m.method
+        print m.statuscode
+        print m.sipCallId
+        print m.isRequest
+        print m.msg
     f.close()
+    # print parser.msgArr
     # print parser.get_starttag_text()
 
 if __name__ == '__main__':
