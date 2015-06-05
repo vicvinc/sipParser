@@ -4,7 +4,7 @@
  *  @license Simplified BSD license.
  */
 (function () {
-	"use strict";
+	'use strict';
 	/*global Diagram */
 
 	/*> ../build/diagram-grammar.js */
@@ -29,5 +29,55 @@
 	} else {
 		root.Diagram = Diagram;
 	}
-
 }());
+/************************************************************************************/
+/*              draw sequence diagram below                                         */
+/************************************************************************************/
+
+function getData(url){
+	var xhr=null;
+	if (window.XMLHttpRequest){// code for all new browsers
+	  	xhr = new XMLHttpRequest();
+	}else if(window.ActiveXObject){// code for IE5 and IE6
+	  	xhr = new ActiveXObject('Microsoft.XMLHTTP');
+	}
+	if (xhr == null){
+		return ;
+	}
+  	xhr.onreadystatechange = function(){
+  		console.log(xhr.status);
+	  	if (xhr.readyState == 4) {
+	  		if (xhr.status === 200){// 200 = OK
+	    		console.log('success');
+	  			var resp = JSON.parse(xhr.responseText);
+	    		drawFlow(resp);
+	    	}else{
+	    		console.log('fail');
+	    	}
+	    }
+  	};
+  	xhr.open('GET',url,true);
+  	xhr.send(null);
+}
+
+/**************************** draw function ********************************/
+
+function drawFlow(respData){
+	// console.log(respData);
+	console.log(typeof(respData));
+	var dgm = '';
+	for (x in respData){
+		console.log(x);
+		console.log(respData[x]);
+		var msg = JSON.parse(respData[x]);
+		console.log(typeof(msg));
+		console.log(msg.msgFrom + '->' + msg.to);
+		dgm = dgm + msg.msgFrom.replace(':','/') + '->' + msg.to.replace(':','/') + ': ' + msg.method + '\n';
+	}
+	var diagram = Diagram.parse(dgm);
+		diagram.drawSVG('diagram', {theme: 'simple'});
+	//diagram.drawSVG('diagram', {theme: 'simple'});
+	// var diagram = Diagram.parse('A->B: Message');
+	// diagram.drawSVG('diagram', {theme: 'simple'});
+}
+getData('x.data');

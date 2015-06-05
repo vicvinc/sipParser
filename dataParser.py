@@ -17,13 +17,23 @@ class sipMsg:
         self.sipCallId = sipCallId
         self.isRequest = isRequest
         self.msg = msg
+
     def parseMsg(self):
         print 'parseMsg'
 
-class MyHTMLParser(HTMLParser):
-    def setMsgFlow(self, msgArr):
-        self.msgArr = msgArr
+    def __enter__(self):
+        return self
+        
+    def __exit__(self, type, value, traceback):
+        for file in self.files:
+            os.unlink(file)
+        del self
+
+class dataParser(HTMLParser):
+    def init(self):
+        self.msgFlow = list()
         self.tmpMsg = sipMsg()
+
     def handle_starttag(self, tag, attrs):
         # print "Start tag:", attrs
         for attr in attrs:
@@ -45,7 +55,7 @@ class MyHTMLParser(HTMLParser):
                 self.tmpMsg.isRequest = attr[1]
         
     def handle_endtag(self, tag):
-        self.msgArr.append(self.tmpMsg) 
+        self.msgFlow.append(self.tmpMsg) 
         self.tmpMsg = sipMsg()
     # def handle_data(self, data):
     #     #self.tmpMsg.msg = data
@@ -53,32 +63,69 @@ class MyHTMLParser(HTMLParser):
     def handle_comment(self, data):
         if (data.find('CDATA') != -1):
             self.tmpMsg.msg = data
+
     def handle_entityref(self, name):
         c = unichr(name2codepoint[name])
         print "Named ent:", c
+
     def handle_charref(self, name):
         if name.startswith('x'):
             c = unichr(int(name[1:], 16))
         else:
             c = unichr(int(name))
         print "Num ent  :", c
+
     def handle_decl(self, data):
         print "Decl     :", data
+
     # def get_starttag_text(self, data):
     #     print "message  :", data
-def main():
-    
-    msgFlow = list()
-    parser = MyHTMLParser()
-    parser.setMsgFlow(msgFlow)
+    def getMsgFlow(self):
+        return self.msgFlow
 
-    f = open('sipserver118.1.trace', 'r')
-    fileData = f.read()
-    repData = fileData.replace('<![', '<!--[')
-    repData = repData.replace(']>', ']-->')
-    # print repData
-    parser.feed(repData)
-    flow = parser.msgArr
+    def __enter__(self):
+        return self
+
+    def __exit__(self, type, value, traceback):
+        for file in self.files:
+            os.unlink(file)
+        del self
+
+class dataFormat():
+    def __init__(self, file):
+        self.filePath = file
+        self.rawData = ''
+
+    def readData(self):
+        try:
+            f = open(self.filePath, 'r')
+        except Exception, e:
+            raise e
+        self.rawData = f.read()
+        f.close()
+        del f
+
+    def formatData(self):
+        tmpData = self.rawData.replace('<![', '<!--[')
+        tmpData = tmpData.replace(']>', ']-->')
+        self.formatedData = tmpData
+        del tmpData
+
+    def getRawData(self):
+        return self.rawData
+
+    def getFormatedData(self):
+        return self.formatedData
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, type, value, traceback):
+        for file in self.files:
+            os.unlink(file)
+        del self
+
+def printFlow(flow):
     for m in flow:
         print m.direction
         print m.msgFrom
@@ -90,9 +137,18 @@ def main():
         print m.sipCallId
         print m.isRequest
         print m.msg
-    f.close()
-    # print parser.msgArr
-    # print parser.get_starttag_text()
+
+def testParser(file):
+    
+    
+    data = dataFormat(file)
+    data.readData()
+    data.formatData()
+
+    parser = dataParser()
+    parser.init()
+    parser.feed(data.getFormatedData())
+    printFlow(parser.getMsgFlow())
 
 if __name__ == '__main__':
-    main()
+    testParser('data/sipserver118.1.trace')

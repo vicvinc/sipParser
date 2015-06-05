@@ -1,0 +1,878 @@
+<!--Log Data=2015-05-27 Time=11:55:28 Count=00001-->
+<message direction=RECVUA time="20150527115528313" from="10.184.112.183:30001" to="127.0.0.1:5061" isFromOut="True" isRequest="True" method="INVITE" statusCode="0" sipCallId="1-14649@10.184.112.183" transId="-14649-1-0" payloadSize="624">
+<![CDATA[
+INVITE sip:ueb@127.0.0.1:4798 SIP/2.0
+Via: SIP/2.0/UDP 10.184.112.183:30001;branch=z9hG4bK-14649-1-0
+Max-Forwards: 70
+Contact: <sip:uea@10.184.112.183:30001>
+To: "ueb"<sip:ueb@127.0.0.1:4798>
+From: "uea"<sip:uea@10.184.112.183:30001>;tag=1
+Call-ID: 1-14649@10.184.112.183
+CSeq: 1 INVITE
+Subject: Performance Test
+Content-Type: application/sdp
+P-NOKIA.Traffica: S1003;i="2CF29D71DC6DB4DD217C259E@0370ffffffff"
+P-NOKIA.Traffica: I1003;t=1431593945.848
+Content-Length: 139
+
+v=0
+o=user1 53655765 2353687637 IN IP4 10.184.112.183
+s=-
+c=IN IP4 10.184.112.183
+t=0 0
+m=audio 6000 RTP/AVP 0
+a=rtpmap:0 PCMU/8000
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:28 Count=00002-->
+<message direction=SENDBG time="20150527115528325" from="130.120.1" to="5.9.1" isFromBack="False" isRequest="True" method="INVITE" statusCode="0" sipCallId="1-14649@10.184.112.183" intCallId="9401265321647538176" serviceId="1" routeOpDesc="Create_Route" payloadSize="561">
+<![CDATA[
+SIPMessage ::= {
+    ch2: Request ::= {
+        method: 1
+        sip-version: SIP/2.0
+        request-addr: Uri ::= {
+            host: 127.0.0.1
+            port: 4798
+            user-info: ueb
+        }
+    }
+    from: From ::= {
+        name-addr: Name-Addr ::= {
+            display-name: uea
+            addrspec: Uri ::= {
+                host: 10.184.112.183
+                port: 30001
+                user-info: uea
+            }
+        }
+        tag: 1
+    }
+    to: To ::= {
+        name-addr: Name-Addr ::= {
+            display-name: ueb
+            addrspec: Uri ::= {
+                host: 127.0.0.1
+                port: 4798
+                user-info: ueb
+            }
+        }
+    }
+    cseq: CSeq ::= {
+        method: 1
+        num: 1
+    }
+    content-Length: 139
+    content-Type: Content-Type ::= {
+        mediaRange: MediaRange ::= {
+            type: 5
+            subtype: sdp
+        }
+    }
+    call-Id: 1-14649@10.184.112.183
+    subject: Performance Test
+    body: v=0
+o=user1 53655765 2353687637 IN IP4 10.184.112.183
+s=-
+c=IN IP4 10.184.112.183
+t=0 0
+m=audio 6000 RTP/AVP 0
+a=rtpmap:0 PCMU/8000
+
+    contact: SipHeaderList ::= {
+        sip:uea@10.184.112.183:30001
+    }
+    extension: SipHeaderList ::= {
+        P-NOKIA.Traffica:S1003;i="2CF29D71DC6DB4DD217C259E@0370ffffffff"
+        P-NOKIA.Traffica:I1003;t=1431593945.848
+    }
+    optional-Header-List: OptionalHeaderList ::= {
+        Call_Id
+        Content_Type
+        Contact
+        Subject
+        P-NOKIA.Traffica
+        P-NOKIA.Traffica
+        Extension
+    }
+}
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:28 Count=00003-->
+<message direction=RECVBG time="20150527115528327" from="5.9.1" to="130.120.1" isFromBack="True" isRequest="True" method="INVITE" statusCode="0" sipCallId="" intCallId="362822344493064129" serviceId="1" payloadSize="1478">
+<![CDATA[
+SIPMessage ::= {
+    ch2: Request ::= {
+        method: 1
+        sip-version: SIP/2.0
+        request-addr: Uri ::= {
+            host: 127.0.0.1
+            port: 4798
+            user-info: ueb
+        }
+    }
+    from: From ::= {
+        name-addr: Name-Addr ::= {
+            display-name: uea
+            addrspec: Uri ::= {
+                host: 10.184.112.183
+                port: 30001
+                user-info: uea
+            }
+        }
+        tag: 1
+    }
+    to: To ::= {
+        name-addr: Name-Addr ::= {
+            display-name: ueb
+            addrspec: Uri ::= {
+                host: 127.0.0.1
+                port: 4798
+                user-info: ueb
+            }
+        }
+    }
+    cseq: CSeq ::= {
+        method: 1
+    }
+    content-Length: 139
+    content-Type: Content-Type ::= {
+        mediaRange: MediaRange ::= {
+            type: 5
+            subtype: sdp
+        }
+    }
+    call-Id: 0509014301400769
+    subject: Performance Test
+    body: v=0
+o=user1 53655765 2353687637 IN IP4 10.184.112.183
+s=-
+c=IN IP4 10.184.112.183
+t=0 0
+m=audio 6000 RTP/AVP 0
+a=rtpmap:0 PCMU/8000
+
+    extension: SipHeaderList ::= {
+        P-NOKIA.Traffica:S1003;i="2CF29D71DC6DB4DD217C259E@0370ffffffff"
+        P-NOKIA.Traffica:I1003;t=1431593945.848
+    }
+    optional-Header-List: OptionalHeaderList ::= {
+        Call_Id
+        Content_Type
+        Contact
+        Subject
+        P-NOKIA.Traffica
+        P-NOKIA.Traffica
+        Extension
+    }
+}
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:28 Count=00004-->
+<message direction=SENDUA time="20150527115528334" from="127.0.0.1" to="127.0.0.1:4798" isFromOut="False" isRequest="True" method="INVITE" statusCode="0" sipCallId="MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI." transId="ea37053d3816c737" payloadSize="880">
+<![CDATA[
+INVITE sip:ueb@127.0.0.1:4798 SIP/2.0
+Via: SIP/2.0/UDP 127.0.0.1:5061;branch=z9hG4bK-d8754z-ea37053d3816c737-1---d8754z-;rport
+Max-Forwards: 70
+Contact: <sip:10.184.112.181:5061>
+To: "ueb"<sip:ueb@127.0.0.1:4798>
+From: "uea"<sip:uea@10.184.112.183:30001>;tag=8b535671eb.rqoryuorrsoryr-vqwr
+Call-ID: MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI.
+CSeq: 1 INVITE
+Subject: Performance Test
+Session-Expires: 3600;refresher=uac
+Min-SE: 90
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, UPDATE, SUBSCRIBE, REFER, PRACK, REGISTER, INFO, PUBLISH, MESSAGE, NOTIFY
+Content-Type: application/sdp
+Supported: timer
+P-NOKIA.Traffica: S1003;i="2CF29D71DC6DB4DD217C259E@0370ffffffff"
+P-NOKIA.Traffica: I1003;t=1431593945.848
+Content-Length: 139
+
+v=0
+o=user1 53655765 2353687637 IN IP4 10.184.112.183
+s=-
+c=IN IP4 10.184.112.183
+t=0 0
+m=audio 6000 RTP/AVP 0
+a=rtpmap:0 PCMU/8000
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:28 Count=00005-->
+<message direction=RECVUA time="20150527115528335" from="127.0.0.1:4798" to="127.0.0.1:5061" isFromOut="True" isRequest="False" method="INVITE" statusCode="180" sipCallId="MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI." transId="ea37053d3816c737" payloadSize="367">
+<![CDATA[
+SIP/2.0 180 Ringing
+Via: SIP/2.0/UDP 127.0.0.1:5061;branch=z9hG4bK-d8754z-ea37053d3816c737-1---d8754z-;rport
+Contact: <sip:127.0.0.1:4798;transport=UDP>
+To: "ueb"<sip:ueb@127.0.0.1:4798>;tag=1
+From: "uea"<sip:uea@10.184.112.183:30001>;tag=8b535671eb.rqoryuorrsoryr-vqwr
+Call-ID: MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI.
+CSeq: 1 INVITE
+Content-Length: 0
+
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:28 Count=00006-->
+<message direction=RECVUA time="20150527115528335" from="127.0.0.1:4798" to="127.0.0.1:5061" isFromOut="True" isRequest="False" method="INVITE" statusCode="200" sipCallId="MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI." transId="ea37053d3816c737" payloadSize="780">
+<![CDATA[
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 127.0.0.1:5061;branch=z9hG4bK-d8754z-ea37053d3816c737-1---d8754z-;rport
+Contact: <sip:127.0.0.1:4798;transport=UDP>
+To: "ueb"<sip:ueb@127.0.0.1:4798>;tag=1
+From: "uea"<sip:uea@10.184.112.183:30001>;tag=8b535671eb.rqoryuorrsoryr-vqwr
+Call-ID: MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI.
+CSeq: 1 INVITE
+Content-Type: application/sdp
+Content-Length: 385
+
+v=0
+o=caller 0 0 IN IP4 127.0.0.1
+s=caller
+i=-
+c=IN IP4 127.0.0.1
+b=AS:256
+t=0 0
+m=audio 60002 RTP/AVP 0 3 4 5 16 17
+a=rtpmap:0 PCMU/8000
+a=rtpmap:3 GSM/8000
+a=rtpmap:4 G723/8000
+a=rtpmap:5 DVI/8000
+a=rtpmap:16 DVI/11025
+a=rtpmap:17 DVI/22050
+a=sendrecv
+m=video 22222 RTP/AVP 34 26 31
+a=rtpmap:26 JPEG/90000
+a=rtpmap:34 H263/90000
+a=rtpmap:31 H261/90000
+a=recvonly
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:28 Count=00007-->
+<message direction=SENDBG time="20150527115528337" from="130.120.1" to="5.9.1" isFromBack="False" isRequest="False" method="INVITE" statusCode="180" sipCallId="MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI." intCallId="362822344493064129" serviceId="1" routeOpDesc="Find_Route" payloadSize="349">
+<![CDATA[
+SIPMessage ::= {
+    ch2: Response ::= {
+        status-code: 180
+        sip-version: SIP/2.0
+        reason-Phrase: Ringing
+    }
+    from: From ::= {
+        name-addr: Name-Addr ::= {
+            display-name: uea
+            addrspec: Uri ::= {
+                host: 10.184.112.183
+                port: 30001
+                user-info: uea
+            }
+        }
+        tag: 8b535671eb.rqoryuorrsoryr-vqwr
+    }
+    to: To ::= {
+        name-addr: Name-Addr ::= {
+            display-name: ueb
+            addrspec: Uri ::= {
+                host: 127.0.0.1
+                port: 4798
+                user-info: ueb
+            }
+        }
+        tag: 1
+    }
+    cseq: CSeq ::= {
+        method: 1
+        num: 1
+    }
+    content-Length: 0
+    call-Id: MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI.
+    dialog-Id: MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI.;to-tag=1;from-tag=8b535671eb.rqoryuorrsoryr-vqwr
+    contact: SipHeaderList ::= {
+        <sip:127.0.0.1:4798;transport=UDP>
+    }
+    optional-Header-List: OptionalHeaderList ::= {
+        Call_Id
+        Contact
+    }
+}
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:28 Count=00008-->
+<message direction=SENDBG time="20150527115528337" from="130.120.1" to="5.9.1" isFromBack="False" isRequest="False" method="INVITE" statusCode="200" sipCallId="MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI." intCallId="362822344493064129" serviceId="1" routeOpDesc="Find_Route" payloadSize="761">
+<![CDATA[
+SIPMessage ::= {
+    ch2: Response ::= {
+        status-code: 200
+        sip-version: SIP/2.0
+        reason-Phrase: OK
+    }
+    from: From ::= {
+        name-addr: Name-Addr ::= {
+            display-name: uea
+            addrspec: Uri ::= {
+                host: 10.184.112.183
+                port: 30001
+                user-info: uea
+            }
+        }
+        tag: 8b535671eb.rqoryuorrsoryr-vqwr
+    }
+    to: To ::= {
+        name-addr: Name-Addr ::= {
+            display-name: ueb
+            addrspec: Uri ::= {
+                host: 127.0.0.1
+                port: 4798
+                user-info: ueb
+            }
+        }
+        tag: 1
+    }
+    cseq: CSeq ::= {
+        method: 1
+        num: 1
+    }
+    content-Length: 385
+    content-Type: Content-Type ::= {
+        mediaRange: MediaRange ::= {
+            type: 5
+            subtype: sdp
+        }
+    }
+    call-Id: MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI.
+    dialog-Id: MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI.;to-tag=1;from-tag=8b535671eb.rqoryuorrsoryr-vqwr
+    body: v=0
+o=caller 0 0 IN IP4 127.0.0.1
+s=caller
+i=-
+c=IN IP4 127.0.0.1
+b=AS:256
+t=0 0
+m=audio 60002 RTP/AVP 0 3 4 5 16 17
+a=rtpmap:0 PCMU/8000
+a=rtpmap:3 GSM/8000
+a=rtpmap:4 G723/8000
+a=rtpmap:5 DVI/8000
+a=rtpmap:16 DVI/11025
+a=rtpmap:17 DVI/22050
+a=sendrecv
+m=video 22222 RTP/AVP 34 26 31
+a=rtpmap:26 JPEG/90000
+a=rtpmap:34 H263/90000
+a=rtpmap:31 H261/90000
+a=recvonly
+
+    contact: SipHeaderList ::= {
+        <sip:127.0.0.1:4798;transport=UDP>
+    }
+    optional-Header-List: OptionalHeaderList ::= {
+        Call_Id
+        Content_Type
+        Contact
+    }
+}
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:28 Count=00009-->
+<message direction=RECVBG time="20150527115528339" from="5.9.1" to="130.120.1" isFromBack="True" isRequest="False" method="INVITE" statusCode="180" sipCallId="1-14649@10.184.112.183" intCallId="9401265321647538176" serviceId="1" payloadSize="972">
+<![CDATA[
+SIPMessage ::= {
+    ch2: Response ::= {
+        status-code: 180
+        sip-version: SIP/2.0
+        reason-Phrase: Ringing
+    }
+    from: From ::= {
+        name-addr: Name-Addr ::= {
+            display-name: uea
+            addrspec: Uri ::= {
+                host: 10.184.112.183
+                port: 30001
+                user-info: uea
+            }
+        }
+        tag: 8b535671eb.rqoryuorrsoryr-vqwr
+    }
+    to: To ::= {
+        name-addr: Name-Addr ::= {
+            display-name: ueb
+            addrspec: Uri ::= {
+                host: 127.0.0.1
+                port: 4798
+                user-info: ueb
+            }
+        }
+        tag: 1
+    }
+    cseq: CSeq ::= {
+        method: 1
+    }
+    content-Length: 0
+    call-Id: 1-14649@10.184.112.183
+    dialog-Id: MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI.;to-tag=1;from-tag=8b535671eb.rqoryuorrsoryr-vqwr
+    optional-Header-List: OptionalHeaderList ::= {
+        Call_Id
+        Contact
+    }
+}
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:28 Count=00010-->
+<message direction=RECVBG time="20150527115528340" from="5.9.1" to="130.120.1" isFromBack="True" isRequest="False" method="INVITE" statusCode="200" sipCallId="1-14649@10.184.112.183" intCallId="9401265321647538176" serviceId="1" payloadSize="1521">
+<![CDATA[
+SIPMessage ::= {
+    ch2: Response ::= {
+        status-code: 200
+        sip-version: SIP/2.0
+        reason-Phrase: OK
+    }
+    from: From ::= {
+        name-addr: Name-Addr ::= {
+            display-name: uea
+            addrspec: Uri ::= {
+                host: 10.184.112.183
+                port: 30001
+                user-info: uea
+            }
+        }
+        tag: 8b535671eb.rqoryuorrsoryr-vqwr
+    }
+    to: To ::= {
+        name-addr: Name-Addr ::= {
+            display-name: ueb
+            addrspec: Uri ::= {
+                host: 127.0.0.1
+                port: 4798
+                user-info: ueb
+            }
+        }
+        tag: 1
+    }
+    cseq: CSeq ::= {
+        method: 1
+    }
+    content-Length: 385
+    content-Type: Content-Type ::= {
+        mediaRange: MediaRange ::= {
+            type: 5
+            subtype: sdp
+        }
+    }
+    call-Id: 1-14649@10.184.112.183
+    dialog-Id: MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI.;to-tag=1;from-tag=8b535671eb.rqoryuorrsoryr-vqwr
+    body: v=0
+o=caller 0 0 IN IP4 127.0.0.1
+s=caller
+i=-
+c=IN IP4 127.0.0.1
+b=AS:256
+t=0 0
+m=audio 60002 RTP/AVP 0 3 4 5 16 17
+a=rtpmap:0 PCMU/8000
+a=rtpmap:3 GSM/8000
+a=rtpmap:4 G723/8000
+a=rtpmap:5 DVI/8000
+a=rtpmap:16 DVI/11025
+a=rtpmap:17 DVI/22050
+a=sendrecv
+m=video 22222 RTP/AVP 34 26 31
+a=rtpmap:26 JPEG/90000
+a=rtpmap:34 H263/90000
+a=rtpmap:31 H261/90000
+a=recvonly
+
+    optional-Header-List: OptionalHeaderList ::= {
+        Call_Id
+        Content_Type
+        Contact
+    }
+}
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:28 Count=00011-->
+<message direction=SENDUA time="20150527115528346" from="127.0.0.1" to="10.184.112.183:30001" isFromOut="False" isRequest="False" method="INVITE" statusCode="180" sipCallId="1-14649@10.184.112.183" transId="-14649-1-0" payloadSize="310">
+<![CDATA[
+SIP/2.0 180 Ringing
+Via: SIP/2.0/UDP 10.184.112.183:30001;branch=z9hG4bK-14649-1-0
+Contact: <sip:10.184.112.181:5061>
+To: "ueb"<sip:ueb@127.0.0.1:4798>;tag=f3956b37eb.rqoryuorrsoryr-vqwr
+From: "uea"<sip:uea@10.184.112.183:30001>;tag=1
+Call-ID: 1-14649@10.184.112.183
+CSeq: 1 INVITE
+Content-Length: 0
+
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:28 Count=00012-->
+<message direction=SENDUA time="20150527115528346" from="127.0.0.1" to="10.184.112.183:30001" isFromOut="False" isRequest="False" method="INVITE" statusCode="200" sipCallId="1-14649@10.184.112.183" transId="-14649-1-0" payloadSize="923">
+<![CDATA[
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.184.112.183:30001;branch=z9hG4bK-14649-1-0
+Require: timer
+Contact: <sip:10.184.112.181:5061>
+To: "ueb"<sip:ueb@127.0.0.1:4798>;tag=f3956b37eb.rqoryuorrsoryr-vqwr
+From: "uea"<sip:uea@10.184.112.183:30001>;tag=1
+Call-ID: 1-14649@10.184.112.183
+CSeq: 1 INVITE
+Session-Expires: 3600;refresher=uas
+Min-SE: 90
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, UPDATE, SUBSCRIBE, REFER, PRACK, REGISTER, INFO, PUBLISH, MESSAGE, NOTIFY
+Content-Type: application/sdp
+Supported: timer
+Content-Length: 385
+
+v=0
+o=caller 0 0 IN IP4 127.0.0.1
+s=caller
+i=-
+c=IN IP4 127.0.0.1
+b=AS:256
+t=0 0
+m=audio 60002 RTP/AVP 0 3 4 5 16 17
+a=rtpmap:0 PCMU/8000
+a=rtpmap:3 GSM/8000
+a=rtpmap:4 G723/8000
+a=rtpmap:5 DVI/8000
+a=rtpmap:16 DVI/11025
+a=rtpmap:17 DVI/22050
+a=sendrecv
+m=video 22222 RTP/AVP 34 26 31
+a=rtpmap:26 JPEG/90000
+a=rtpmap:34 H263/90000
+a=rtpmap:31 H261/90000
+a=recvonly
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:28 Count=00013-->
+<message direction=RECVUA time="20150527115528346" from="10.184.112.183:30001" to="127.0.0.1:5061" isFromOut="True" isRequest="True" method="ACK" statusCode="0" sipCallId="1-14649@10.184.112.183" transId="-14649-1-4" payloadSize="435">
+<![CDATA[
+ACK sip:ueb@127.0.0.1:4798 SIP/2.0
+Via: SIP/2.0/UDP 10.184.112.183:30001;branch=z9hG4bK-14649-1-4
+Max-Forwards: 70
+Contact: <sip:uea@10.184.112.183:30001;transport=UDP>
+To: "ueb"<sip:ueb@127.0.0.1:4798>;tag=f3956b37eb.rqoryuorrsoryr-vqwr
+From: "uea"<sip:uea@10.184.112.183:30001>;tag=1
+Call-ID: 1-14649@10.184.112.183
+CSeq: 1 ACK
+Subject: Performance Test
+Allow: INVITE, BYE, CANCEL, ACK, PRACK, OPTIONS
+Content-Length: 0
+
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:28 Count=00014-->
+<message direction=SENDBG time="20150527115528349" from="130.120.1" to="5.9.1" isFromBack="False" isRequest="True" method="ACK" statusCode="0" sipCallId="1-14649@10.184.112.183" intCallId="9401265321647538176" serviceId="1" routeOpDesc="Find_Route" payloadSize="408">
+<![CDATA[
+SIPMessage ::= {
+    ch2: Request ::= {
+        method: 4
+        sip-version: SIP/2.0
+        request-addr: Uri ::= {
+            host: 127.0.0.1
+            port: 4798
+            user-info: ueb
+        }
+    }
+    from: From ::= {
+        name-addr: Name-Addr ::= {
+            display-name: uea
+            addrspec: Uri ::= {
+                host: 10.184.112.183
+                port: 30001
+                user-info: uea
+            }
+        }
+        tag: 1
+    }
+    to: To ::= {
+        name-addr: Name-Addr ::= {
+            display-name: ueb
+            addrspec: Uri ::= {
+                host: 127.0.0.1
+                port: 4798
+                user-info: ueb
+            }
+        }
+        tag: f3956b37eb.rqoryuorrsoryr-vqwr
+    }
+    cseq: CSeq ::= {
+        method: 4
+        num: 1
+    }
+    content-Length: 0
+    call-Id: 1-14649@10.184.112.183
+    subject: Performance Test
+    dialog-Id: 1-14649@10.184.112.183;to-tag=f3956b37eb.rqoryuorrsoryr-vqwr;from-tag=1
+    allow: SipHeaderList ::= {
+        INVITE
+        BYE
+        CANCEL
+        ACK
+        PRACK
+        OPTIONS
+    }
+    contact: SipHeaderList ::= {
+        <sip:uea@10.184.112.183:30001;transport=UDP>
+    }
+    optional-Header-List: OptionalHeaderList ::= {
+        Call_Id
+        Contact
+        Allow
+        Subject
+    }
+}
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:28 Count=00015-->
+<message direction=RECVBG time="20150527115528350" from="5.9.1" to="130.120.1" isFromBack="True" isRequest="True" method="ACK" statusCode="0" sipCallId="MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI." intCallId="362822344493064129" serviceId="1" payloadSize="1234">
+<![CDATA[
+SIPMessage ::= {
+    ch2: Request ::= {
+        method: 4
+        sip-version: SIP/2.0
+        request-addr: Uri ::= {
+            host: 127.0.0.1
+            port: 4798
+            user-info: ueb
+        }
+    }
+    from: From ::= {
+        name-addr: Name-Addr ::= {
+            display-name: uea
+            addrspec: Uri ::= {
+                host: 10.184.112.183
+                port: 30001
+                user-info: uea
+            }
+        }
+        tag: 1
+    }
+    to: To ::= {
+        name-addr: Name-Addr ::= {
+            display-name: ueb
+            addrspec: Uri ::= {
+                host: 127.0.0.1
+                port: 4798
+                user-info: ueb
+            }
+        }
+        tag: f3956b37eb.rqoryuorrsoryr-vqwr
+    }
+    cseq: CSeq ::= {
+        method: 4
+    }
+    content-Length: 0
+    call-Id: MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI.
+    subject: Performance Test
+    dialog-Id: 1-14649@10.184.112.183;to-tag=f3956b37eb.rqoryuorrsoryr-vqwr;from-tag=1
+    allow: SipHeaderList ::= {
+        INVITE
+        BYE
+        CANCEL
+        ACK
+        PRACK
+        OPTIONS
+    }
+    optional-Header-List: OptionalHeaderList ::= {
+        Call_Id
+        Contact
+        Allow
+        Subject
+    }
+}
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:28 Count=00016-->
+<message direction=SENDUA time="20150527115528357" from="127.0.0.1" to="127.0.0.1:4798" isFromOut="False" isRequest="True" method="ACK" statusCode="0" sipCallId="MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI." transId="d004d864cbf1ab45" payloadSize="425">
+<![CDATA[
+ACK sip:127.0.0.1:4798;transport=UDP SIP/2.0
+Via: SIP/2.0/UDP 127.0.0.1:5061;branch=z9hG4bK-d8754z-d004d864cbf1ab45-1---d8754z-;rport
+Max-Forwards: 70
+Contact: <sip:10.184.112.181:5061>
+To: "ueb"<sip:ueb@127.0.0.1:4798>;tag=1
+From: "uea"<sip:uea@10.184.112.183:30001>;tag=8b535671eb.rqoryuorrsoryr-vqwr
+Call-ID: MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI.
+CSeq: 1 ACK
+Subject: Performance Test
+Content-Length: 0
+
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:58 Count=00017-->
+<message direction=RECVUA time="20150527115558349" from="10.184.112.183:30001" to="127.0.0.1:5061" isFromOut="True" isRequest="True" method="BYE" statusCode="0" sipCallId="1-14649@10.184.112.183" transId="-14649-1-6" payloadSize="359">
+<![CDATA[
+BYE sip:ueb@127.0.0.1:4798 SIP/2.0
+Via: SIP/2.0/UDP 10.184.112.183:30001;branch=z9hG4bK-14649-1-6
+Max-Forwards: 70
+Contact: <sip:uea@10.184.112.183:30001;transport=UDP>
+To: "ueb"<sip:ueb@127.0.0.1:4798>;tag=f3956b37eb.rqoryuorrsoryr-vqwr
+From: "uea"<sip:uea@10.184.112.183:30001>;tag=1
+Call-ID: 1-14649@10.184.112.183
+CSeq: 1 BYE
+Content-Length: 0
+
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:58 Count=00018-->
+<message direction=SENDBG time="20150527115558355" from="130.120.1" to="5.9.1" isFromBack="False" isRequest="True" method="BYE" statusCode="0" sipCallId="1-14649@10.184.112.183" intCallId="9401265321647538176" serviceId="1" routeOpDesc="Delete_Route" payloadSize="329">
+<![CDATA[
+SIPMessage ::= {
+    ch2: Request ::= {
+        method: 3
+        sip-version: SIP/2.0
+        request-addr: Uri ::= {
+            host: 127.0.0.1
+            port: 4798
+            user-info: ueb
+        }
+    }
+    from: From ::= {
+        name-addr: Name-Addr ::= {
+            display-name: uea
+            addrspec: Uri ::= {
+                host: 10.184.112.183
+                port: 30001
+                user-info: uea
+            }
+        }
+        tag: 1
+    }
+    to: To ::= {
+        name-addr: Name-Addr ::= {
+            display-name: ueb
+            addrspec: Uri ::= {
+                host: 127.0.0.1
+                port: 4798
+                user-info: ueb
+            }
+        }
+        tag: f3956b37eb.rqoryuorrsoryr-vqwr
+    }
+    cseq: CSeq ::= {
+        method: 3
+        num: 1
+    }
+    content-Length: 0
+    call-Id: 1-14649@10.184.112.183
+    dialog-Id: 1-14649@10.184.112.183;to-tag=f3956b37eb.rqoryuorrsoryr-vqwr;from-tag=1
+    contact: SipHeaderList ::= {
+        <sip:uea@10.184.112.183:30001;transport=UDP>
+    }
+    optional-Header-List: OptionalHeaderList ::= {
+        Call_Id
+        Contact
+    }
+}
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:58 Count=00019-->
+<message direction=RECVBG time="20150527115558357" from="5.9.1" to="130.120.1" isFromBack="True" isRequest="True" method="BYE" statusCode="0" sipCallId="MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI." intCallId="362822344493064129" serviceId="1" payloadSize="1053">
+<![CDATA[
+SIPMessage ::= {
+    ch2: Request ::= {
+        method: 3
+        sip-version: SIP/2.0
+        request-addr: Uri ::= {
+            host: 127.0.0.1
+            port: 4798
+            user-info: ueb
+        }
+    }
+    from: From ::= {
+        name-addr: Name-Addr ::= {
+            display-name: uea
+            addrspec: Uri ::= {
+                host: 10.184.112.183
+                port: 30001
+                user-info: uea
+            }
+        }
+        tag: 1
+    }
+    to: To ::= {
+        name-addr: Name-Addr ::= {
+            display-name: ueb
+            addrspec: Uri ::= {
+                host: 127.0.0.1
+                port: 4798
+                user-info: ueb
+            }
+        }
+        tag: f3956b37eb.rqoryuorrsoryr-vqwr
+    }
+    cseq: CSeq ::= {
+        method: 3
+    }
+    content-Length: 0
+    call-Id: MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI.
+    dialog-Id: 1-14649@10.184.112.183;to-tag=f3956b37eb.rqoryuorrsoryr-vqwr;from-tag=1
+    optional-Header-List: OptionalHeaderList ::= {
+        Call_Id
+        Contact
+    }
+}
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:58 Count=00020-->
+<message direction=SENDUA time="20150527115558359" from="127.0.0.1" to="10.184.112.183:30001" isFromOut="False" isRequest="False" method="BYE" statusCode="200" sipCallId="1-14649@10.184.112.183" transId="-14649-1-6" payloadSize="302">
+<![CDATA[
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.184.112.183:30001;branch=z9hG4bK-14649-1-6
+Contact: <sip:10.184.112.181:5061>
+To: "ueb"<sip:ueb@127.0.0.1:4798>;tag=f3956b37eb.rqoryuorrsoryr-vqwr
+From: "uea"<sip:uea@10.184.112.183:30001>;tag=1
+Call-ID: 1-14649@10.184.112.183
+CSeq: 1 BYE
+Content-Length: 0
+
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:58 Count=00021-->
+<message direction=SENDUA time="20150527115558359" from="127.0.0.1" to="127.0.0.1:4798" isFromOut="False" isRequest="True" method="BYE" statusCode="0" sipCallId="MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI." transId="6160fb2400ddad72" payloadSize="398">
+<![CDATA[
+BYE sip:127.0.0.1:4798;transport=UDP SIP/2.0
+Via: SIP/2.0/UDP 127.0.0.1:5061;branch=z9hG4bK-d8754z-6160fb2400ddad72-1---d8754z-;rport
+Max-Forwards: 70
+Contact: <sip:10.184.112.181:5061>
+To: "ueb"<sip:ueb@127.0.0.1:4798>;tag=1
+From: "uea"<sip:uea@10.184.112.183:30001>;tag=8b535671eb.rqoryuorrsoryr-vqwr
+Call-ID: MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI.
+CSeq: 2 BYE
+Content-Length: 0
+
+
+]>
+</message>
+<!--Log Data=2015-05-27 Time=11:55:58 Count=00022-->
+<message direction=RECVUA time="20150527115558359" from="127.0.0.1:4798" to="127.0.0.1:5061" isFromOut="True" isRequest="False" method="BYE" statusCode="200" sipCallId="MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI." transId="6160fb2400ddad72" payloadSize="359">
+<![CDATA[
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 127.0.0.1:5061;branch=z9hG4bK-d8754z-6160fb2400ddad72-1---d8754z-;rport
+Contact: <sip:127.0.0.1:4798;transport=UDP>
+To: "ueb"<sip:ueb@127.0.0.1:4798>;tag=1
+From: "uea"<sip:uea@10.184.112.183:30001>;tag=8b535671eb.rqoryuorrsoryr-vqwr
+Call-ID: MzM3MDc5MzdmNDRhNzJjODQxOTVkY2MzZGI1OThmYzI.
+CSeq: 2 BYE
+Content-Length: 0
+
+
+]>
+</message>
