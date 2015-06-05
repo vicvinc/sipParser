@@ -45,10 +45,10 @@ function getData(url){
 		return ;
 	}
   	xhr.onreadystatechange = function(){
-  		console.log(xhr.status);
+  		//console.log(xhr.status);
 	  	if (xhr.readyState == 4) {
 	  		if (xhr.status === 200){// 200 = OK
-	    		console.log('success');
+	    		//console.log('success');
 	  			var resp = JSON.parse(xhr.responseText);
 	    		drawFlow(resp);
 	    	}else{
@@ -64,15 +64,16 @@ function getData(url){
 
 function drawFlow(respData){
 	// console.log(respData);
-	console.log(typeof(respData));
+	//console.log(typeof(respData));
 	var dgm = '';
 	for (x in respData){
-		console.log(x);
-		console.log(respData[x]);
+		// console.log(x);
+		// console.log(respData[x]);
 		var msg = JSON.parse(respData[x]);
-		console.log(typeof(msg));
-		console.log(msg.msgFrom + '->' + msg.to);
-		dgm = dgm + msg.msgFrom.replace(':','/') + '->' + msg.to.replace(':','/') + ': ' + msg.method + '\n';
+		// console.log(typeof(msg));
+		// console.log(msg.msgFrom + '->' + msg.to);
+		dgm = dgm + msg.msgFrom.replace(':','/') + '->' + 
+			msg.to.replace(':','/') + ': ' + msg.method + '\n';
 	}
 	var diagram = Diagram.parse(dgm);
 		diagram.drawSVG('diagram', {theme: 'simple'});

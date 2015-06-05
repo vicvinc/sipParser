@@ -120,6 +120,13 @@ class routeHandler(BaseHTTPRequestHandler):
 			self.end_headers()
 			self.wfile.write(css)
 			del css
+		elif uri.endswith('.ico'):
+			ico = self.getFile(uri)
+			self.protocal_version = 'HTTP/1.1'
+			self.send_response(200)  
+			self.send_header("Content-Type", "image/png")         
+			self.end_headers()
+			self.wfile.write(ico)
 		elif uri.endswith('.map'):
 			#deal with .map request which I dont quite understand comes from where
 			self.protocal_version = 'HTTP/1.1'
@@ -156,6 +163,7 @@ class routeHandler(BaseHTTPRequestHandler):
 		for file in self.files:
 			os.unlink(file)
 		del self
+		
 def main():
 	PORT = 3000
 
