@@ -72,8 +72,10 @@ function drawFlow(respData){
 		var msg = JSON.parse(respData[x]);
 		// console.log(typeof(msg));
 		// console.log(msg.msgFrom + '->' + msg.to);
-		dgm = dgm + msg.msgFrom.replace(':','/') + '->' + 
-			msg.to.replace(':','/') + ': ' + msg.method + '\n';
+		dgm = dgm + msg.msgFrom.replace(':','/') + 
+			'->' + 
+			msg.to.replace(':','/') + ': ' + 
+			msg.method + ' ' + msg.statuscode + '\n';
 	}
 	var diagram = Diagram.parse(dgm);
 		diagram.drawSVG('diagram', {theme: 'simple'});

@@ -139,7 +139,7 @@ class routeHandler(BaseHTTPRequestHandler):
 			self.send_response(200)  
 			self.send_header("Content-Type", "application/json")         
 			self.end_headers()
-			tmpData = data('data/sipserver130.1.trace')
+			tmpData = data('data/example.trace')
 			tmpData.formate()
 			# tmpData.printFlow() 
 			buf = tmpData.getMsgFlow()
@@ -163,7 +163,7 @@ class routeHandler(BaseHTTPRequestHandler):
 		for file in self.files:
 			os.unlink(file)
 		del self
-		
+
 def main():
 	PORT = 3000
 
