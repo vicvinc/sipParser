@@ -92,18 +92,19 @@ class dataParser(HTMLParser):
         del self
 
 class dataFormat():
-    def __init__(self, file):
-        self.filePath = file
+    # def __init__(self, file):
+    #     self.filePath = file
+    def __init__(self, f):
         self.rawData = ''
+        self.file = f
 
     def readData(self):
-        try:
-            f = open(self.filePath, 'r')
-        except Exception, e:
-            raise e
-        self.rawData = f.read()
-        f.close()
-        del f
+        # try:
+        #     f = open(self.filePath, 'r')
+        # except Exception, e:
+        #     raise e
+        self.rawData = self.file.read()
+        self.file.close()
 
     def formatData(self):
         tmpData = self.rawData.replace('<![', '<!--[')

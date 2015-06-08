@@ -1,25 +1,27 @@
 import sys
+import cgi
 import SocketServer
 import urlparse
 import json
 from dataParser import *
 from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
 
-class data:
-	def __init__(self, file):
+class DataHandler:
+	# def __init__(self, file):	
+	def __init__(self,file):
 		self.msgFlow  = ''
 		self.msgFlowJson = ''
-		self.filePath = file
+		self.file = file
 
 	def formate(self):
-		data = dataFormat(self.filePath)
-		data.readData()
-		data.formatData()
+		self.data = dataFormat(self.file)
+		self.data.readData()
+		self.data.formatData()
 		
-		parser = dataParser()
-		parser.init()
-		parser.feed(data.getFormatedData())
-		self.msgFlow = parser.getMsgFlow()
+		self.parser = dataParser()
+		self.parser.init()
+		self.parser.feed(self.data.getFormatedData())
+		self.msgFlow = self.parser.getMsgFlow()
 		# printFlow(parser.getMsgFlow())
 
 	def getMsgFlow(self):
@@ -71,6 +73,8 @@ class routeHandler(BaseHTTPRequestHandler):
 
 	def getFile(self, filename):
 		filename = filename.replace('/public','public')
+		if filename == '/favicon.ico':
+			filename = 'public/img/favicon.ico'
 		try:
 			f = open(filename, 'rb')
 		except Exception, e:
@@ -139,14 +143,56 @@ class routeHandler(BaseHTTPRequestHandler):
 			self.send_response(200)  
 			self.send_header("Content-Type", "application/json")         
 			self.end_headers()
-			tmpData = data('data/example.trace')
-			tmpData.formate()
-			# tmpData.printFlow() 
-			buf = tmpData.getMsgFlow()
-			jsonData = tmpData.toJson()
-			# print jsonData
-			self.wfile.write(jsonData)
-			del tmpData
+			
+			# tmpData = data('data/example.trace')
+			# tmpData.formate()
+			# # tmpData.printFlow() 
+			# buf = tmpData.getMsgFlow()
+			# jsonData = tmpData.toJson()
+			# # print jsonData
+			# self.wfile.write(jsonData)
+			# del tmpData
+	def do_POST(self):
+		form = cgi.FieldStorage(
+			fp=self.rfile, 
+			headers=self.headers,
+			environ={'REQUEST_METHOD':'POST',
+					 'CONTENT_TYPE':self.headers['Content-Type'],
+		})
+		# form = cgi.FieldStorage()
+		# Begin the response
+		self.send_response(200)
+		self.end_headers()
+		# self.wfile.write('Client: %s\n' % str(self.client_address))
+		# self.wfile.write('User-agent: %s\n' % str(self.headers['user-agent']))
+		# self.wfile.write('Path: %s\n' % self.path)
+		# self.wfile.write('Form data:\n')
+		print form.file
+		print form.filename
+		print form.headers
+		
+		# return 
+		# Echo back information about what was posted in the form
+		for field in form.keys():
+			print field
+			return
+			field_item = form[field]
+			if field_item.filename:
+				# The field contains an uploaded file
+				# self.postFile = field_item.file
+				tmpData = DataHandler(field_item.file)
+				tmpData.formate()
+				buf = tmpData.getMsgFlow()
+				jsonData = tmpData.toJson()
+				self.wfile.write(jsonData)
+				del tmpData
+				# file_len = len(file_data)
+				# self.wfile.write('\tUploaded %s as "%s" (%d bytes)\n' % \
+				# 		(field, field_item.filename, file_len))
+			else:
+				# Regular form value
+				self.wfile.write('\t%s=%s\n' % (field, form[field].value))
+
 
 # if self.path.endswith(".map"):
 # 				mimetype = "application/json"

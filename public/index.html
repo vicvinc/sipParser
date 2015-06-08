@@ -8,7 +8,17 @@
 	<script type="text/javascript" src="public/js/jquery-plugin.js"></script>
 </head>
 <body>
-<header> sipserver130.1.trace </header>
+<header> sip trace file convert v1.0 </header>
+<div>    
+	<!-- <form action="upload" method="post" enctype="multipart/form-data"> -->
+		<input id="file" type="file" name="file"><br /><br />
+		<input id="fileSubmit" type="submit" value="Upload">
+		<div class="wall">
+			Progessing (in Bytes): 
+			<span id="bytesRead" class=""></span> / <span id="bytesTotal"></span>
+		</div>
+<!-- 	</form> -->
+</div>
 <p> flow </p>
 <div id="diagram"></div>
 
