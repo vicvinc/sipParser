@@ -56,7 +56,7 @@ function postData(url, data){
   	};
 	//xhr.sendAsBinary(data);
   	xhr.open('POST', url, true);
-  	xhr.setRequestHeader("Content-Type", "multipart/form-data");
+  	xhr.setRequestHeader('Content-Type', 'multipart/form-data');
   	xhr.send(data);
 }
 
@@ -83,6 +83,11 @@ function drawFlow(respData){
 	// var diagram = Diagram.parse('A->B: Message');
 	// diagram.drawSVG('diagram', {theme: 'simple'});
 }
+
+/***********************************************************************
+             upload file and get parser response                      
+************************************************************************/
+
 function uploadAndSubmit() {
 	var form = document.getElementById('file').files;
 	var fData = new FormData();
@@ -91,35 +96,32 @@ function uploadAndSubmit() {
 		fData.append(file.name, file);
 		var reader = new FileReader();
 		reader.onloadstart = function() {
-			console.log("onloadstart");
-			
-		document.getElementById("bytesTotal").textContent = file.size;
+			// console.log('onloadstart');
+			document.getElementById('bytesTotal').textContent = file.size;
 		}
 		
 		reader.onprogress = function(p) {
-			console.log("onprogress");
-			document.getElementById("bytesRead").textContent = p.loaded;
+			// console.log('onprogress');
+			document.getElementById('bytesRead').textContent = p.loaded;
 		}
 		
 		reader.onload = function() {
-			console.log("load complete");
+			// console.log('load complete');
 		}
 		
 		reader.onloadend = function() {
 			if (reader.error) {
 				console.log(reader.error);
 			} else {
-				document.getElementById("bytesRead").textContent = file.size;
+				document.getElementById('bytesRead').textContent = file.size;
 				var xhr = new XMLHttpRequest();
-				xhr.open(/* method */ "POST", /* target url */ "upload?fileName=" + file.name /*, async, default to true */);
-		  		xhr.overrideMimeType("application/octet-stream");
-				//xhr.send(reader.result);
+				xhr.open(/* method */ 'POST', /* target url */ 'upload?f=' + file.name /*, async, default to true */);
 				xhr.send(fData);
 				xhr.onreadystatechange = function() {
 					if (xhr.readyState == 4) {
 						if (xhr.status == 200) {
-							console.log("upload complete");
-							console.log("response: " + xhr.responseText);
+							var resp = JSON.parse(xhr.responseText);
+	    					drawFlow(resp);
 						}
 					}
 				}
@@ -128,76 +130,12 @@ function uploadAndSubmit() {
 		reader.readAsBinaryString(file);
 	}
 	else{
-		alert ("Please choose a file.");
+		alert ('Please choose a file.');
 	}
-}
-buildMessage : function(elements, boundary) {
-    var CRLF = "\r\n";
-    var parts = [];
-
-    elements.forEach(function(element, index, all) {
-        var part = "";
-        var type = "TEXT";
-
-        if (element.nodeName.toUpperCase() === "INPUT") {
-            type = element.getAttribute("type").toUpperCase();
-        }
-
-        if (type === "FILE" && element.files.length > 0) {
-            var fieldName = element.name;
-            var fileName = element.files[0].fileName;
-
-            /*
-             * Content-Disposition header contains name of the field
-             * used to upload the file and also the name of the file as
-             * it was on the user's computer.
-             */
-            part += 'Content-Disposition: form-data; ';
-            part += 'name="' + fieldName + '"; ';
-            part += 'filename="'+ fileName + '"' + CRLF;
-
-            /*
-             * Content-Type header contains the mime-type of the file
-             * to send. Although we could build a map of mime-types
-             * that match certain file extensions, we'll take the easy
-             * approach and send a general binary header:
-             * application/octet-stream
-             */
-            part += "Content-Type: application/octet-stream";
-            part += CRLF + CRLF; // marks end of the headers part
-
-            /*
-             * File contents read as binary data, obviously
-             */
-            part += element.files[0].getAsBinary() + CRLF;
-       } else {
-            /*
-             * In case of non-files fields, Content-Disposition
-             * contains only the name of the field holding the data.
-             */
-            part += 'Content-Disposition: form-data; ';
-            part += 'name="' + element.name + '"' + CRLF + CRLF;
-
-            /*
-             * Field value
-             */
-            part += element.value + CRLF;
-       }
-
-       parts.push(part);
-    });
-
-    var request = "--" + boundary + CRLF;
-        request+= parts.join("--" + boundary + CRLF);
-        request+= "--" + boundary + "--" + CRLF;
-
-    return request;
 }
 (function listener(){
 	var subt = document.getElementById('fileSubmit');
 	document.getElementById('fileSubmit').addEventListener('click', function(){
-		//var forms = document.forms[];
 		uploadAndSubmit();
-		//postData('upload', d);
 	});
 }());

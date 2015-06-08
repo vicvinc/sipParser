@@ -4,24 +4,25 @@
 	<title>sip message flow</title>
 	<link rel="stylesheet" type="text/css" href="public/css/style.css">
 	<link rel="stylesheet" type="text/css" href="public/css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css">
 	<link rel="icon" type="image/png" href="public/img/favicon.ico">
 	<script type="text/javascript" src="public/js/jquery-plugin.js"></script>
 </head>
 <body>
-<header> sip trace file convert v1.0 </header>
-<div>    
-	<!-- <form action="upload" method="post" enctype="multipart/form-data"> -->
-		<input id="file" type="file" name="file"><br /><br />
-		<input id="fileSubmit" type="submit" value="Upload">
-		<div class="wall">
-			Progessing (in Bytes): 
-			<span id="bytesRead" class=""></span> / <span id="bytesTotal"></span>
-		</div>
-<!-- 	</form> -->
-</div>
-<p> flow </p>
-<div id="diagram"></div>
+<header class="lead text-center"> 
+	<h2> sip trace file convert v1.0 </h2>
+</header>
+<div class="container">    
+	<input id="file" type="file" name="file" class="input btn btn-primary">
+	<input id="fileSubmit" type="submit" value="Upload" class="btn btn-success">
+	<div class="wall">
+		Progessing (in Bytes): 
+		<span id="bytesRead" ></span> / <span id="bytesTotal"></span>
+	</div>
 
+	<p> flow </p>
+	<div id="diagram"></div>
+</div>
 <footer>
 	<script type="text/javascript" src="public/js/diagram.js"></script>
 	<script type="text/javascript" src="public/js/underscore-min.js"></script>

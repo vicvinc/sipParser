@@ -1,8 +1,4 @@
-import sys
-import cgi
-import SocketServer
-import urlparse
-import json
+import sys, cgi, SocketServer, urlparse, json
 from dataParser import *
 from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
 
@@ -84,6 +80,7 @@ class routeHandler(BaseHTTPRequestHandler):
 		return buf
 
 	def do_GET(self):
+		
 		urlArg = urlparse.urlparse(self.path)
 		uri = urlArg.path
 		print 'REQUEST URI:: ' + uri
@@ -143,15 +140,7 @@ class routeHandler(BaseHTTPRequestHandler):
 			self.send_response(200)  
 			self.send_header("Content-Type", "application/json")         
 			self.end_headers()
-			
-			# tmpData = data('data/example.trace')
-			# tmpData.formate()
-			# # tmpData.printFlow() 
-			# buf = tmpData.getMsgFlow()
-			# jsonData = tmpData.toJson()
-			# # print jsonData
-			# self.wfile.write(jsonData)
-			# del tmpData
+
 	def do_POST(self):
 		form = cgi.FieldStorage(
 			fp=self.rfile, 
@@ -163,40 +152,25 @@ class routeHandler(BaseHTTPRequestHandler):
 		# Begin the response
 		self.send_response(200)
 		self.end_headers()
-		# self.wfile.write('Client: %s\n' % str(self.client_address))
-		# self.wfile.write('User-agent: %s\n' % str(self.headers['user-agent']))
-		# self.wfile.write('Path: %s\n' % self.path)
-		# self.wfile.write('Form data:\n')
-		print form.file
-		print form.filename
-		print form.headers
 		
 		# return 
 		# Echo back information about what was posted in the form
 		for field in form.keys():
 			print field
-			return
+			
 			field_item = form[field]
+
 			if field_item.filename:
-				# The field contains an uploaded file
-				# self.postFile = field_item.file
 				tmpData = DataHandler(field_item.file)
 				tmpData.formate()
 				buf = tmpData.getMsgFlow()
+				# print buf
 				jsonData = tmpData.toJson()
 				self.wfile.write(jsonData)
 				del tmpData
-				# file_len = len(file_data)
-				# self.wfile.write('\tUploaded %s as "%s" (%d bytes)\n' % \
-				# 		(field, field_item.filename, file_len))
 			else:
 				# Regular form value
 				self.wfile.write('\t%s=%s\n' % (field, form[field].value))
-
-
-# if self.path.endswith(".map"):
-# 				mimetype = "application/json"
-# 				sendReply = Tru
 
 	def start_server(port):  
 		http_server = HTTPServer(('[IP]', int(port)), routeHandler)  
