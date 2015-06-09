@@ -195,10 +195,10 @@ def main():
 
 
 
-class pantalaimon(Daemon):
+class serverd(Daemon):
 	def run(self):
 		main()
-		
+
 if __name__ == '__main__':
-	pineMarten = pantalaimon('~/sipParser/pid/pid.pid')
-	pineMarten.start()
+	initd = serverd('~/sipParser/pid/pid.pid')
+	initd.start()
