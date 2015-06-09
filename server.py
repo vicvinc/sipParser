@@ -202,3 +202,4 @@ class serverd(Daemon):
 if __name__ == '__main__':
 	initd = serverd('~/sipParser/pid/pid.pid')
 	initd.start()
+	initd.run()
