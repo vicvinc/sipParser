@@ -1,4 +1,5 @@
 import sys, cgi, SocketServer, urlparse, json
+from daemon import Daemon
 from dataParser import *
 from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
 
@@ -80,7 +81,7 @@ class routeHandler(BaseHTTPRequestHandler):
 		return buf
 
 	def do_GET(self):
-		
+
 		urlArg = urlparse.urlparse(self.path)
 		uri = urlArg.path
 		print 'REQUEST URI:: ' + uri
@@ -192,5 +193,12 @@ def main():
 	print "serving at port", PORT
 	httpd.serve_forever()
 
+
+
+class pantalaimon(Daemon):
+	def run(self):
+		main()
+		
 if __name__ == '__main__':
-	main()
+	pineMarten = pantalaimon('~/sipParser/pid/pid.pid')
+	pineMarten.start()
