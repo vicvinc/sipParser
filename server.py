@@ -200,6 +200,6 @@ class serverd(Daemon):
 		main()
 
 if __name__ == '__main__':
-	initd = serverd('~/sipParser/pid/pid.pid')
+	initd = serverd('/home/vagrant/sipParser/pid/pid.pid')
 	initd.start()
 	initd.run()
